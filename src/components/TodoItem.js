@@ -12,15 +12,29 @@ class TodoItem extends React.Component {
 
         const { id, text, completed } = this.props.todos
 
+        const todoItemCompleted = {
+            "color" : "gray",
+            "textDecoration": "line-through"
+        }
+
         return (
 
             <div className="todo-name">
-                <label className="todo-item"><input className="todo-checkbox" type="checkbox" checked={completed} onChange={() => { this.props.handleChange(id) }} />{text}</label>
+                <label className="todo-item">
+                    <input
+                    className="todo-checkbox"
+                    type="checkbox"
+                    checked={completed}
+                    onChange={
+                        () => {
+                            this.props.handleChange(id)
+                        }
+                    } />
+                    {completed ? <span style={todoItemCompleted}>{text}</span> : text }
+                </label>
             </div>
-
         )
     }
-
 }
 
 export default TodoItem
